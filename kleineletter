@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner toetsenbord = new Scanner(System.in);
+        String woord;
+        char karakter;
+        int teller = 0;
+        boolean woordMetEnkelKleineLetters = true;
+        System.out.print("Geef een woord met enkel kleine letters: ");
+        woord = toetsenbord.nextLine();
+        while (teller < woord.length() && woordMetEnkelKleineLetters) {
+            karakter = woord.charAt(teller);
+            if (!(karakter >= 'a' && karakter <= 'z')) {
+                woordMetEnkelKleineLetters = false;
+            }
+            teller++;
+        }
+        if (woordMetEnkelKleineLetters) {
+            System.out.println("Prima!");
+        } else {
+            System.out.println("Niet in orde!");
+        }
+    }
+}
