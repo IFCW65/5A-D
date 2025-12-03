@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner toetsenbord = new Scanner(System.in);
+
+        String ingegevenString;
+        char karakter;
+        int teller = 0, cijferTeller = 0;
+        boolean geldigNatuurlijkGetalTussenHaakjes = true;
+
+        System.out.print("Geef een natuurlijk getal tussen haakjes: ");
+        ingegevenString = toetsenbord.nextLine();
+        if (ingegevenString.length() < 3) {
+            geldigNatuurlijkGetalTussenHaakjes = false;
+
+        } else {
+            while (teller < ingegevenString.length() && geldigNatuurlijkGetalTussenHaakjes) {
+                karakter = ingegevenString.charAt(teller);
+                if (teller == 0) {
+                    if (karakter != '(' && karakter != '[') {
+                        geldigNatuurlijkGetalTussenHaakjes = false;
+                    }
+                } else if (teller == ingegevenString.length() - 1) {
+                    if (karakter != ')' && karakter != ']') {
+                        geldigNatuurlijkGetalTussenHaakjes = false;
+                    }
+                } else {
+                    if (karakter >= '0' && karakter <= '9') {
+                        cijferTeller++;
+                    } else {
+                        geldigNatuurlijkGetalTussenHaakjes = false;
+                    }
+                }
+                teller++;
+            }
+        }
+        if (geldigNatuurlijkGetalTussenHaakjes) {
+            System.out.print("Je hebt een natuurlijk getal tussen haakjes ingegeven dat " + cijferTeller + "cijfers bevat.");
+        } else {
+            System.out.print("Je hebt geen natuurlijk getal tussen haakjes ingegeven.");
+        }
+    }
+}
