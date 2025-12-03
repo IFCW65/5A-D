@@ -7,7 +7,7 @@ public class Main {
         int teller = 0;
         char karakter;
         int key;
-        String cypher = "";
+        String ballen = "";
 
         System.out.print("Geef een woord: ");
         woord = toetsenbord.nextLine();
@@ -17,9 +17,9 @@ public class Main {
         while (teller < woord.length()) {
             karakter = woord.charAt(teller);
             karakter += key;
-            cypher += karakter;
+            ballen += karakter;
             teller++;
         }
-        System.out.println("Cypher: " + cypher);
+        System.out.println("ballen: " + cypher);
     }
 }
