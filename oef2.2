@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner toetsenbord = new Scanner(System.in);
+        String zin;
+
+        // Zorgen dat de zin geldig is
+        while (true) {
+            System.out.print("Geef een zin: ");
+            zin = toetsenbord.nextLine();
+
+            if (zin.length() > 0 &&
+                zin.charAt(0) >= 'A' && zin.charAt(0) <= 'Z' &&
+                (zin.charAt(zin.length() - 1) == '.' ||
+                 zin.charAt(zin.length() - 1) == '?' ||
+                 zin.charAt(zin.length() - 1) == '!')) {
+                break;
+            } else {
+                System.out.println("De zin moet beginnen met een hoofdletter en eindigen met ., ? of !.");
+            }
+        }
+
+        int klinkers = 0;
+        int leestekens = 0;
+        int haakjes = 0;
+        int cijfers = 0;
+        String nieuweZin = "";
+
+        // Loop door de zin zonder for
+        int lengte = zin.length();
+        int positie = 0;
+        while (positie < lengte) {
+            char c = zin.charAt(positie);
+
+            // Tellen
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+                c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+                klinkers++;
+                nieuweZin += '*';
+            } else if (c == ',' || c == '.' || c == ';' || c == ':' || c == '!' || c == '?') {
+                leestekens++;
+                nieuweZin += '+';
+            } else if (c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}') {
+                haakjes++;
+                nieuweZin += c; // haakjes vervang je niet
+            } else if (c >= '0' && c <= '9') {
+                cijfers++;
+                nieuweZin += '@';
+            } else {
+                nieuweZin += c;
+            }
+
+            positie++; // naar volgende karakter
+        }
+
+        System.out.println("Aantal klinkers: " + klinkers);
+        System.out.println("Aantal leestekens: " + leestekens);
+        System.out.println("Aantal haakjes: " + haakjes);
+        System.out.println("Aantal cijfers: " + cijfers);
+        System.out.println("Originele zin met vervangingen: " + nieuweZin);
+    }
+}
